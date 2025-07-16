@@ -46,7 +46,7 @@ export class GitHubFileSystem extends VirtualFileSystem {
                     ["kicad_sch", "kicad_pcb"].includes(extension(info.path!))
                 ) {
                     const guc_url = gh_user_content.convert_url(url);
-                    var name = basename(guc_url);
+                    let name = basename(guc_url);
                     if (name == "usb.kicad_sch") {
                         name = "subsheet/usb.kicad_sch";
                     }
