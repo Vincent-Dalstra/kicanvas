@@ -70,17 +70,20 @@ export class GitHubFileSystem extends VirtualFileSystem {
                 for (const gh_file of gh_file_list) {
                     console.log(`gh_file["name"] = ${gh_file["name"]}`);
 
-                    const name = gh_file["name"];
-                    const download_url = gh_file["download_url"];
-                    if (
-                        !name ||
-                        !download_url ||
-                        !kicad_extensions.includes(extension(name))
-                    ) {
-                        continue;
-                    }
+                    const suburl = url + `/` + gh_file["name"];
+                    urls.push(suburl);
 
-                    files_to_urls.set(name, download_url);
+                    // const name = gh_file["name"];
+                    // const download_url = gh_file["download_url"];
+                    // if (
+                    //     !name ||
+                    //     !download_url ||
+                    //     !kicad_extensions.includes(extension(name))
+                    // ) {
+                    //     continue;
+                    // }
+
+                    // files_to_urls.set(name, download_url);
                 }
             }
         }
