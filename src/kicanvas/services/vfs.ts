@@ -93,7 +93,7 @@ export class FetchFileSystem extends VirtualFileSystem {
         const url = this.#resolve(name);
 
         if (!url) {
-            throw new Error(`File ${name} not found!`);
+            throw new Error(`File ${name} not found! (vfs.ts:96)`);
         }
 
         const request = new Request(url, { method: "GET" });
@@ -185,7 +185,7 @@ export class DragAndDropFileSystem extends VirtualFileSystem {
         }
 
         if (file_entry == null) {
-            throw new Error(`File ${name} not found!`);
+            throw new Error(`File ${name} not found! (vfs.ts:188)`);
         }
 
         return await new Promise((resolve, reject) => {
