@@ -89,15 +89,17 @@ export class GitHubFileSystem extends VirtualFileSystem {
     }
 
     public override get(name: string): Promise<File> {
-        // const url = this.files_to_urls.get(name);
+        const url = this.files_to_urls.get(name);
 
-        throw new Error(`files_to_urls ${this.files_to_urls}`);
+        for (const key of this.files_to_urls.keys()) {
+            console.log(`key = ${key}`);
+        }
 
-        // if (!url) {
-        //     throw new Error(`File ${name} not found! (github_vfs.ts:95)`);
-        // }
+        if (!url) {
+            throw new Error(`File ${name} not found! (github_vfs.ts:95)`);
+        }
 
-        // return gh_user_content.get(url);
+        return gh_user_content.get(url);
     }
 
     public override has(name: string) {
