@@ -30,7 +30,7 @@ export class GitHubFileSystem extends VirtualFileSystem {
         for (const url of urls) {
             const info = GitHub.parse_url(url);
 
-            console.log(`URL = ${url}`);
+            console.log(`url = ${url}`);
 
             if (!info || !info.owner || !info.repo) {
                 continue;
@@ -68,6 +68,8 @@ export class GitHubFileSystem extends VirtualFileSystem {
                 )) as Record<string, string>[];
 
                 for (const gh_file of gh_file_list) {
+                    console.log(`gh_file = ${gh_file}`);
+
                     const name = gh_file["name"];
                     const download_url = gh_file["download_url"];
                     if (
