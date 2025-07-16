@@ -30,6 +30,8 @@ export class GitHubFileSystem extends VirtualFileSystem {
         for (const url of urls) {
             const info = GitHub.parse_url(url);
 
+            console.log(`URL = ${url}`);
+
             if (!info || !info.owner || !info.repo) {
                 continue;
             }
