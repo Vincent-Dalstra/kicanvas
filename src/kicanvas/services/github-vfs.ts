@@ -77,8 +77,10 @@ export class GitHubFileSystem extends VirtualFileSystem {
                     const name = gh_file["name"];
                     const download_url = gh_file["download_url"];
 
-                    if (download_url) {
-                        urls.push(download_url);
+                    if (!download_url) {
+                        const subdir = url + '/' + (name ?? "");
+                        urls.push(subdir);
+                        console.log(`Add new url: ${subdir}`);
                     }
 
                     if (
