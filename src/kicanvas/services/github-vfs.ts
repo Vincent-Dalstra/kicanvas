@@ -35,6 +35,11 @@ export class GitHubFileSystem extends VirtualFileSystem {
 
             console.log(`url = ${url}`);
 
+            if (info == null)
+                continue;
+            
+            console.log(`path = ${info.path}`);
+
             if (!info || !info.owner || !info.repo) {
                 continue;
             }
@@ -91,7 +96,8 @@ export class GitHubFileSystem extends VirtualFileSystem {
                         continue;
                     }
 
-                    files_to_urls.set(name, download_url);
+                    const relative_path = (info.path + '/' + name);
+                    files_to_urls.set(relative_path, download_url);
                 }
             }
         }
