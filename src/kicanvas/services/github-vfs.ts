@@ -27,6 +27,9 @@ export class GitHubFileSystem extends VirtualFileSystem {
 
         const files_to_urls = new Map();
 
+        
+
+
         for (const url of urls) {
             const info = GitHub.parse_url(url);
 
@@ -69,6 +72,9 @@ export class GitHubFileSystem extends VirtualFileSystem {
 
                 for (const gh_file of gh_file_list) {
                     console.log(`gh_file["name"] = ${gh_file["name"]}`);
+                    console.log(`gh_file["download_url"] = ${gh_file["download_url"]}`);
+
+                    console.log(`gh_file = ${gh_file}`);
 
                     const name = gh_file["name"];
                     const download_url = gh_file["download_url"];
