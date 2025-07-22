@@ -102,6 +102,11 @@ export class GitHubFileSystem extends VirtualFileSystem {
             }
         }
 
+        console.log(`end of fromURLs():`)
+        for (const key of files_to_urls.keys()) {
+            console.log(`key = ${key}`);
+        }
+
         return new GitHubFileSystem(files_to_urls);
     }
 
@@ -111,10 +116,6 @@ export class GitHubFileSystem extends VirtualFileSystem {
 
     public override get(name: string): Promise<File> {
         const url = this.files_to_urls.get(name);
-
-        for (const key of this.files_to_urls.keys()) {
-            console.log(`key = ${key}`);
-        }
 
         if (!url) {
             throw new Error(`File ${name} not found! (github_vfs.ts:95)`);
