@@ -46,6 +46,7 @@ export class Project extends EventTarget implements IDisposable {
 
         for (const filename of this.#fs.list()) {
             promises.push(this.#load_file(filename));
+            console.log(`Initial push = ${filename}`);
         }
 
         await Promise.all(promises);
@@ -62,6 +63,7 @@ export class Project extends EventTarget implements IDisposable {
                     if (!sheet_sch && sheet.sheetfile) {
                         // Missing schematic, attempt to fetch
                         promises.push(this.#load_file(sheet.sheetfile));
+                        console.log(`Later push = ${sheet.sheetfile}`);
                     }
                 }
             }
