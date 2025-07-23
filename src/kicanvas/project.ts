@@ -60,11 +60,11 @@ export class Project extends EventTarget implements IDisposable {
                         sheet.sheetfile ?? "",
                     ) as KicadSch;
 
-                    if (!sheet_sch && sheet.sheetfile) {
-                        // Missing schematic, attempt to fetch
-                        promises.push(this.#load_file(sheet.sheetfile));
-                        console.log(`Later push = ${sheet.sheetfile}`);
-                    }
+                    // if (!sheet_sch && sheet.sheetfile) {
+                    //     // Missing schematic, attempt to fetch
+                    //     promises.push(this.#load_file(sheet.sheetfile));
+                    //     console.log(`Later push = ${sheet.sheetfile}`);
+                    // }
                 }
             }
             await Promise.all(promises);
