@@ -27,17 +27,13 @@ export class GitHubFileSystem extends VirtualFileSystem {
 
         const files_to_urls = new Map();
 
-        
-
-
         for (const url of urls) {
             const info = GitHub.parse_url(url);
 
             console.log(`url = ${url}`);
 
-            if (info == null)
-                continue;
-            
+            if (info == null) continue;
+
             console.log(`path = ${info.path}`);
 
             if (!info || !info.owner || !info.repo) {
@@ -77,13 +73,15 @@ export class GitHubFileSystem extends VirtualFileSystem {
 
                 for (const gh_file of gh_file_list) {
                     console.log(`gh_file["name"] = ${gh_file["name"]}`);
-                    console.log(`gh_file["download_url"] = ${gh_file["download_url"]}`);                    
+                    console.log(
+                        `gh_file["download_url"] = ${gh_file["download_url"]}`,
+                    );
 
                     const name = gh_file["name"];
                     const download_url = gh_file["download_url"];
 
                     if (!download_url) {
-                        const subdir = url + '/' + (name ?? "");
+                        const subdir = url + "/" + (name ?? "");
                         urls.push(subdir);
                         console.log(`Add new url: ${subdir}`);
                     }
@@ -96,13 +94,13 @@ export class GitHubFileSystem extends VirtualFileSystem {
                         continue;
                     }
 
-                    const relative_path = (info.path + '/' + name);
+                    const relative_path = info.path + "/" + name;
                     files_to_urls.set(relative_path, download_url);
                 }
             }
         }
 
-        console.log(`end of fromURLs():`)
+        console.log(`end of fromURLs():`);
         for (const key of files_to_urls.keys()) {
             console.log(`key = ${key}`);
         }
