@@ -115,10 +115,14 @@ export class GitHubFileSystem extends VirtualFileSystem {
     }
 
     public override get(name: string): Promise<File> {
-        const url = this.files_to_urls.get(name);
+        let url = this.files_to_urls.get(name);
 
         if (!url) {
-            throw new Error(`File ${name} not found! (github_vfs.ts:95)`);
+            url = this.files_to_urls.get(`subsheet/` + name);
+
+            if (!url) {
+                throw new Error(`File ${name} not found! (github_vfs.ts:95)`);
+            }
         }
 
         return gh_user_content.get(url);
